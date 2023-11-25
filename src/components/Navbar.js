@@ -6,7 +6,11 @@ import { Logo } from '../media/images/Logo.png';
 
 const Navbar = () => {
     return (
-        <div>Navbar</div>
+        <Stack>
+            <Link>
+                <img src={Logo} />
+            </Link>
+        </Stack>
     )
 }
 
