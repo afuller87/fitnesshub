@@ -11,28 +11,27 @@ const Navbar = () => {
             sx={{ gap: {
             sm: '122px', xs: '40px'},
             marginTop: { sm: '32px', xs: '20px'},
-            justfyContent: 'none'}}
+            justifyContent: 'none'}}
             px="20px">
             <Link to="/">
                 <img src={Logo} alt="logo" style={{ 
-                    width: '150px',
-                    height: '150px',
-                    margin: '0 20px'
-                }} />
+                    width: '160px',
+                    height: '160px',
+                    margin: '0 20px'}} />
             </Link>
             <Stack
                 direction="row"
-                gap="50px"
+                gap="80px"
                 fontSize="24px"
                 alignItems="center"
             >
                 <Link to="/" style={{
                     textDecoration: 'none',
-                    color: "teal",
+                    color: "blue",
                     borderBottom: '3px solid goldenrod'}}>Home</Link>
                 <a href="#exercises" style={{
                     textDecoration: 'none',
-                    color: 'teal'}}>Exercises</a>
+                    color: 'blue'}}>Exercises</a>
             </Stack>
         </Stack>
     )
