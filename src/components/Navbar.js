@@ -10,7 +10,7 @@ const Navbar = () => {
         justifyContent="space-around" 
             sx={{ gap: {
             sm: '122px', xs: '40px'},
-            marginTop: { sm: '32px', xs: '20px'},
+            marginTop: { sm: '5px', xs: '20px'},
             justifyContent: 'none'}}
             px="20px">
             <Link to="/">
@@ -21,7 +21,7 @@ const Navbar = () => {
             </Link>
             <Stack
                 direction="row"
-                gap="80px"
+                gap="90px"
                 fontSize="24px"
                 alignItems="center"
             >

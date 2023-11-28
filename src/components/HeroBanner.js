@@ -14,12 +14,12 @@ const HeroBanner = () => {
                     opacity: 0.2,
                     display: { lg: 'block', xs: 'none'}}}
                     fontSize="100px" 
-                    marginTop="-200px"
+                    marginTop="-210px"
                     marginLeft="110px"
                     lineHeight="120px">
                 Healthy <br /> Uplifting <br /> Bodies
             </Typography>
-            <Typography fontSize="20px" lineHeight= "120px" marginBottom={1} fontStyle="italic" textAlign="center">
+            <Typography fontSize="20px" lineHeight= "120px" marginBottom={1} fontStyle="italic" marginLeft='100px'>
                 Elevate your workout experience, achieve your fitness goals, and stay motivated on your path to a healthier, stronger you!
             </Typography>
             <Button variant="contained" color="primary" href="#exercises"
