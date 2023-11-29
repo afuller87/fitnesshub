@@ -1,8 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 
+import { exerciseOptions, fetchData } from "../utilities/fetchData";
+import HorizontalScrollBar from "./HorizontalScrollBar";
+
 const SearchExercises = () => {
-    // const [search, setSearch] = useState
+    const [search, setSearch] = useState('')
+    const [exercises, setExercises] = useState([]);
+    const [bodyParts, setBodyParts] = useState([])
+
+    useEffect(() => {
+        const fetchExercisesData = async () => {
+            const bodyPartsData = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions);
+            setBodyParts(['all', ...bodyPartsData]);
+        }
+
+        fetchExercisesData();
+    }, [])
+
+    const handleSearch = async () => {
+        if(search) {
+            const exercisesData = await fetchData('https://exercisedb.p.rapidapi.com/exercises', exerciseOptions);
+
+            const searchedExercises = exerciseData.filter(
+                (exercise) => exercise.name.toLowerCase().includes(search)
+                || exercise.targetMuscle.toLowerCase().includes(search)
+                || exercise.bodyPart.toLowerCase().includes(search)
+                || exercise.equipment.toLowerCase().includes(search)
+            );
+
+            setSearch('');
+            setExercises(searchedExercises);
+        }
+    }
     return (
         <Stack 
         alignItems="center" 
@@ -11,7 +41,7 @@ const SearchExercises = () => {
         padding="20px">
             <Typography fontWeight={700}
             sx={{
-                fontSize: { lg: '34px', xs: '20px'}}}
+                fontSize: { lg: '30px', xs: '16px'}}}
                 marginTop="20px"
                 textAlign="center">
                 Find Your Fit, Find Your Future.
@@ -28,8 +58,8 @@ const SearchExercises = () => {
                         borderRadius: '40px'
                     }}
                     height="76px"
-                    value=""
-                    onChange={(e) => {}}
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value.toLowerCase())}
                     placeholder="Search Exercises"
                     type="text"/>  
                 <Button className="search-btn"
@@ -42,9 +72,13 @@ const SearchExercises = () => {
                         height: '56px',
                         position: "absolute",
                         right: '0'
-                    }}>
+                    }}
+                    onClick={(handleSearch)}>
                         Search
                     </Button>
+            </Box>
+            <Box sx={{ position: 'relative', width: '100%', padding: '20px'}}>
+                <HorizontalScrollBar data={bodyParts} />
             </Box>
         </Stack>
     )
