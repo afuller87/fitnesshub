@@ -23,7 +23,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #FF2625;
+    color: blue;
     font-size: 25px;
     border-radius: 4px;
     position: absolute;
