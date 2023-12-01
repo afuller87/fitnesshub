@@ -17,11 +17,11 @@ const Home = () => {
             bodyPart={bodyPart} 
             setBodyPart={setBodyPart}/>
             <Exercises 
-            exercises={setExercises}
-            setExercises={bodyPart} 
-            bodyPart={setBodyPart}/>
+            exercises={exercises}
+            setExercises={setExercises} 
+            bodyPart={bodyPart}/>
         </Box>
     )
 }
 
-export default Home
+export default Home;
