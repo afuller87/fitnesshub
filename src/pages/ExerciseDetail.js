@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Box } from '@mui/material';
 
 import { exerciseOptions, fetchData, youtubeOptions } from '../utilities/fetchData';
-import Details from '../components/Details';
+import Detail from '../components/Detail';
 import ExerciseVideos from '../components/ExerciseVideos';
 import SimilarExercises from '../components/SimilarExercises';
 
@@ -40,8 +40,8 @@ const ExerciseDetail = () => {
   if (!exerciseDetail) return <div>No Data</div>;
 
   return (
-    <Box sx={{ marginTop: { lg: '96px', xs: '60px' } }}>
-      <Details exerciseDetail={exerciseDetail} />
+    <Box sx={{ mt: { lg: '96px', xs: '60px' } }}>
+      <Detail exerciseDetail={exerciseDetail} />
       <ExerciseVideos exerciseVideos={exerciseVideos} name={exerciseDetail.name} />
       <SimilarExercises targetMuscleExercises={targetMuscleExercises} equipmentExercises={equipmentExercises} />
     </Box>

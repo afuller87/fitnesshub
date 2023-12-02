@@ -22,6 +22,7 @@ const Navbar = () => {
             <Stack
                 direction="row"
                 gap="90px"
+                fontFamily="Alegreya"
                 fontSize="24px"
                 alignItems="center"
             >
