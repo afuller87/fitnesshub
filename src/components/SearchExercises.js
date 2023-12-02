@@ -4,15 +4,29 @@ import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import { exerciseOptions, fetchData } from '../utilities/fetchData';
 import HorizontalScrollbar from './HorizontalScrollbar';
 
+
 const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
   const [search, setSearch] = useState('');
   const [bodyParts, setBodyParts] = useState([]);
 
   useEffect(() => {
     const fetchExercisesData = async () => {
-      const bodyPartsData = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions);
+      try {
+        const bodyPartsData = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions);
 
-      setBodyParts(['all', ...bodyPartsData]);
+        if (Array.isArray(bodyPartsData)) {
+          setBodyParts(['all', ...bodyPartsData]);
+        } else if (bodyPartsData && typeof bodyPartsData === 'object') {
+          // If the API returns an object, extract the keys as an array
+          const keysArray = Object.keys(bodyPartsData);
+          setBodyParts(['all', ...keysArray]);
+        } else {
+          // Handle the case where bodyPartsData is not an array or object
+          console.error('bodyPartsData is not an array or object:', bodyPartsData);
+        }
+      } catch (error) {
+        console.error('Error fetching body parts data:', error);
+      }
     };
 
     fetchExercisesData();

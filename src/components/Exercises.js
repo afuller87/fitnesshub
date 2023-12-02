@@ -10,19 +10,31 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [exercisesPerPage] = useState(6);
 
+  
   useEffect(() => {
     const fetchExercisesData = async () => {
-      let exercisesData = [];
+      try {
+        let exercisesData = [];
 
-      if (bodyPart === 'all') {
-        exercisesData = await fetchData('https://exercisedb.p.rapidapi.com/exercises', exerciseOptions);
-      } else {
-        exercisesData = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`, exerciseOptions);
+        if (bodyPart === 'all') {
+          exercisesData = await fetchData('https://exercisedb.p.rapidapi.com/exercises', exerciseOptions);
+        } else {
+          exercisesData = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`, exerciseOptions);
+        }
+
+        // Ensure exercisesData is an array before setting it
+        if (Array.isArray(exercisesData)) {
+          setExercises(exercisesData);
+        } else {
+          // Handle the case where exercisesData is not an array
+          console.error('exercisesData is not an array:', exercisesData);
+        }
+      } catch (error) {
+        console.error('Error fetching exercises data:', error);
       }
-
-      setExercises(exercisesData);
     };
 
+    // Fetch data when the component mounts and when bodyPart changes
     fetchExercisesData();
   }, [bodyPart]);
 
@@ -34,7 +46,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
   const paginate = (event, value) => {
     setCurrentPage(value);
 
-    window.scrollTo({ top: 1800, behavior: 'smooth' });
+    window.scrollTo({ top: 3300, behavior: 'smooth' });
   };
 
   if (!currentExercises.length) return <Loader />;

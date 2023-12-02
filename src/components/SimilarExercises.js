@@ -6,7 +6,7 @@ import Loader from './Loader';
 
 const SimilarExercises = ({ targetMuscleExercises, equipmentExercises }) => (
   <Box sx={{ mt: { lg: '100px', xs: '0px' } }}>
-    <Typography sx={{ fontSize: { lg: '34px', xs: '15px' }, ml: '20px' }} fontWeight={700} color="#000" mb="33px">
+    <Typography sx={{ fontSize: { lg: '34px', xs: '15px' }, ml: '20px' }} fontWeight={700} color="black" mb="33px">
       Similar <span style={{ color: 'blue', textTransform: 'capitalize' }}>Target Muscle</span> exercises
     </Typography>
     <Stack direction="row" sx={{ p: 2, position: 'relative' }}>
